@@ -1,9 +1,24 @@
 body {
   font-family: "roboto", sans-serif;
-  background-color: var(--background-color);
+  background-color: grey;
+  // background-color: rgb(60, 124, 241);
+  // background-color: rgb(252, 56, 56);
+  // background-color: rgb(0, 142, 31);
   height: 100vh;
   align-items: center;
   // justify-content: space-around;
+  transition: 300ms ease-in;
+}
+.color__blue {
+  box-shadow: rgb(0, 87, 250) 0px 0px 4px 3px, white 0px 0px 10px 5px;
+}
+
+.color__green {
+  box-shadow: rgb(19, 246, 49) 0px 0px 4px 3px, rgb(255, 255, 255) 0px 0px 10px 5px;
+}
+
+.color__red {
+  box-shadow: rgb(255, 5, 5) 0px 0px 4px 3px, rgb(255, 255, 255) 0px 0px 10px 5px;
 }
 
 .text {
@@ -15,11 +30,11 @@ body {
   max-width: 120px;
   text-align: center;
   color: transparent;
-  background: red;
+  background: white;
   -webkit-background-clip: text;
   -moz-background-clip: text;
   background-clip: text;
-  text-shadow: 0px 3px 3px rgba(255, 255, 255, 0.5);
+  // text-shadow: 0px 3px 3px rgba(255, 255, 255, 0.5);
   border-radius: 14px;
   padding: 3px;
   box-shadow: 2px 0px 23px 12px white;
@@ -55,24 +70,17 @@ body {
     line-height: 1.1;
     letter-spacing: 0.03em;
     color: transparent;
-    background: #333131;
+    // background: #333131;
+    background: white;
     -webkit-background-clip: text;
     -moz-background-clip: text;
     background-clip: text;
-    text-shadow: 0px 3px 2px rgba(255, 255, 255, 0.5);
+    // text-shadow: 0px 3px 2px rgba(255, 255, 255, 0.5);
     border-radius: 5px;
     // box-shadow: 0px 0px 25px 12px white;
     transition: 500ms var(--cubic-bezier);
 }
-.color__blue{
-  box-shadow: rgb(0, 87, 250) 0px 0px 4px 3px, white 0px 0px 10px 5px;
-}
-.color__green {
-  box-shadow: rgb(19, 246, 49) 0px 0px 4px 3px, rgb(255, 255, 255) 0px 0px 10px 5px;
-}
-.color__red {
-  box-shadow: rgb(255, 5, 5) 0px 0px 4px 3px, rgb(255, 255, 255) 0px 0px 10px 5px;
-}
+
 
 .text_area {
   z-index: 12;
@@ -88,11 +96,12 @@ body {
   line-height: 1.1;
   letter-spacing: 0.03em;
   color: transparent;
-  background: #333131;
+  // background: #333131;
+  background: white;
   -webkit-background-clip: text;
   -moz-background-clip: text;
   background-clip: text;
-  text-shadow: 0px 3px 2px rgba(255, 255, 255, 0.5);
+  // text-shadow: 0px 3px 2px rgba(255, 255, 255, 0.5);
   border-radius: 5px;
   // box-shadow: 0px 0px 25px 12px white;
   transition: 500ms var(--cubic-bezier);
@@ -126,9 +135,11 @@ cursor: pointer;
 .timeMarker{
   text-align: center;
   font-size: 15px;
+  opacity: 0;
 }
 .questionWord{
   font-size: 15px;
+  opacity: 0;
 }
 .correctAnswersnumber{
 position: absolute;

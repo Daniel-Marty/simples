@@ -1,17 +1,20 @@
 .mark {
     cursor: pointer;
     position: absolute;
-    max-height:80px;
-    max-width: 200px;
-    border-radius: 80px;
-    left: 50%;
-    transform: translate(30%, 122%);
+    right:0;
+    transition: 300ms ease-in-out;
+    // max-height:80px;
+    // max-width: 200px;
+    // border-radius: 80px;
+    // right: 120px;
+    // transform: translate(30%, 122%);
 
 }
 .content {
     display: block;
     justify-content: center;
     align-items: center;
+transition: 300ms ease-in-out;
 }
 // .content__item{
 //     margin-left: 20px;
