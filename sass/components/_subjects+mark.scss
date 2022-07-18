@@ -1,0 +1,30 @@
+.mark {
+    cursor: pointer;
+    position: absolute;
+    max-height:80px;
+    max-width: 200px;
+    border-radius: 80px;
+    left: 50%;
+    transform: translate(30%, 122%);
+
+}
+.content {
+    display: block;
+    justify-content: center;
+    align-items: center;
+}
+// .content__item{
+//     margin-left: 20px;
+// }
+.there_is {
+    position: absolute;
+    left:380px;
+    top: -30px;
+    border-radius: 30px;
+}
+.mark__conditional{
+    cursor: pointer;
+    max-height:80px;
+    max-width: 150px;
+    border-radius: 80px;
+}

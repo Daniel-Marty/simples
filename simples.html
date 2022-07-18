@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Raleway:wght@700&family=Roboto:wght@400;500;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.1.0/modern-normalize.min.css"
+        integrity="sha512-wpPYUAdjBVSE4KJnH1VR1HeZfpl1ub8YT/NKx4PuQ5NmX2tKuGu6U/JRp5y+Y8XG2tV+wKQpNHVUX03MfMFn9Q=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./css/main.min.css">
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <title>Simples-Mobile</title>
+</head>
+
+<body>
+
+   <div class="wrapper">
+    <header class="header">
+    <!-- <div class="container">
+            <nav class="header__menu">
+                <ul class="header__list">
+                    <li><a href="" class="header__link">Present Simple</a></li>
+                    <li><a href="" class="header__link">Past Simple</a></li>
+                    <li><a href="" class="header__link">Future Simple</a></li>
+                </ul>
+            </nav>
+    </div>
+    <div class="header__burger" id="burger">
+        <span></span>
+    </div> -->
+    </header>
+    
+            <ul class="colors__list" id="colorsList">
+                <li class="color__item" id="colorBlue"><img class="color__blue"  src="./images-marks/blue.jpg" alt="color" width="30">
+                <p class="color__text">SIMPLE PAST</p></li>
+                <li class="color__item" id="colorGreen"><img class="color__green"  src="./images-marks/green.jpg" alt="color" width="30">
+                <p class="color__text">SIMPLE PRESENT</p></li>
+                <li class="color__item" id="colorRed"><img class="color__red"  src="./images-marks/red.jpg" alt="color" width="30">
+                <p class="color__text">SIMPLE FUTURE</p></li>
+            </ul>
+
+            <img onclick="get_random_mark" class="mark" id="mark" src="images-marks/1.png" alt="mark" height="160">
+            <img class="generate__button" id="generateButton" src="./images-marks/generate.png" alt="GENERATE" height="40">
+        <ul class="content">
+            <li class="content__item"><p class="text questionWord" id="questionWord">Question word</p></li>
+            <li class="content__item"><div class="verb"><img class="" id='subject' src="./images-subject/cat.jpg" alt="subject" width="140"><div class="overlay">
+                <p class="verbPrompt" id="subjectPrompt">subject name</p>
+            </div></div>
+            
+        </li>
+            <li class="content__item">
+                <p class="text firstConnectionWord" id="firstConnection">connection word</p>
+            </li>
+            <li class="content__item"><div id="verb" class="verb"><img class="" id='verbPic'
+                    src="./images-verbs/fight.gif" alt="VERB" width="150">
+                    <div class="overlay">
+                        <p class="verbPrompt" id="verbPrompt">verb name</p>
+                    </div></div></li>
+            <li class="content__item"><p class="text timeMarker" id="timeMarker">time marker</p></li>
+        </ul>
+        
+   </div>
+   <ul>
+    <li><p class="text_area" id="textSolution">This is where you will see the solution</p></li>
+    <li></li>
+   </ul>
+<div class="container">
+    <nav class="header__menu">
+        <ul class="header__list">
+            <li><a href="" class="header__link">Present Simple</a></li>
+            <li><a href="" class="header__link">Past Simple</a></li>
+            <li><a href="" class="header__link">Future Simple</a></li>
+        </ul>
+    </nav>
+</div>
+<div class="header__burger" id="burger">
+    <span></span>
+</div>
+<p class="text textArea__question" id="textAreaQuestion">?</p>
+    <script src="./js/simples.js"></script>
+</body>
