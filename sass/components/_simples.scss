@@ -4,7 +4,6 @@
     margin: 0 auto;
     padding: 0 10px;
 }
-
 .header {
     position: fixed;
     top: 0;
@@ -52,29 +51,32 @@
 }
 @media screen and (min-width:280px) {
 .content {
-        margin-top: 125px;
+        margin-top: 160px;
         margin-left: 30px;
     }
     .content__item {
         margin: 0 0 20px 40px;
     }
-    // .mark{
-    //     left:58%;
-    // }
+}
+@media screen and (min-width:412px) {
+    .content{
+        margin: 200px 0 0 60px;
+    }
 }
  @media screen and (min-width: 479px) {
 .content{
-    margin-top: 80px;
+    margin-top: 130px;
 } 
 .content__item{
     margin: 0 0 40px 60px;
-    transition: 300ms ease-in;
+    
 }
  }
  @media screen and (min-width: 667px) {
   .content{
     display: flex;
         margin-top: 16%;
+        margin-left: 0;
   }  
   .content__item {
       margin: 0 0 0px 20px;
@@ -84,12 +86,22 @@
     text-align: center;
     transform: translate(-50%, 0);
   }
-  .textArea__question{
-    transform: translate(-50%, 120%);
+  .prompt__word{
+    top:30px;
+    left:6%;
+  }
+  .prompt__question{
+top:30px;
+left:6%;
+
   }
   .generate__button{
     top: 15%;
-        right: 5%;
+    right: 5%;
+  }
+  .speaker{
+    top:60%;
+    left:5%;
   }
  }
 @media screen and (max-width: 767px){

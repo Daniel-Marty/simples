@@ -1,11 +1,15 @@
 .generate__button{
   position: absolute;
   top:15%;
-  right: 2%;
+  right: 7%;
 
   border-radius: 0;
 }
-
+.speaker {
+  position: absolute;
+  top:30%;
+  right:3%;
+}
 
 .tense{
   cursor: pointer;

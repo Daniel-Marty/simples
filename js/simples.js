@@ -20,6 +20,8 @@ const colorRedBtn = document.getElementById('colorRed');
 const timeMarker = document.getElementById('timeMarker');
 const connectionWord = document.getElementById('firstConnection');
 const connectionLi = document.getElementById('connectionLi');
+const content = document.querySelector('.content');
+
 
 const PrSStyle = 'rgb(0, 165, 50)';
 const FSStyle = 'rgb(252, 56, 56)';
@@ -32,6 +34,10 @@ const verbsFolder = './images-verbs/'
 let marks_array = ['1.png', '2.png', '3.png']
 let subject_array = ['he.jpg', 'it.jpg', 'I.jpg', 'she.jpg', 'they.jpg', 'we.jpg', 'you.jpg', 'nobody.jpg', 'cat.jpg', 'dog.jpg', 'somebody.jpg', 'David.jpg', 'Charlie.jpg', 'Emilia.jpg',]
 let verbs_array = ['be.jpg', 'need.jpg', 'can.jpg', 'want.jpg', 'fight.gif', 'drive.gif',]
+
+// ===================================SPEECH========================
+
+
 
 // =========================================FUNCTIONS CHANGE===============================
 function changeVerb(verbName) {
@@ -52,14 +58,14 @@ function changeMark(markName) {
 function changeBodyStyle(selectedStyle) {
     body.style.backgroundColor = selectedStyle;
 };
-// let qFuck = mark.src === "./images-marks/3.png";
-// function changeMarkPosition() {
-//     if (mark.src.contains('3.png')) {
-//         // mark.style.right = '105px';
-//         console.log('holy shit dude!');
-//         // } else { mark.style.right = '0px' }
-//     }
-// };
+function moveContent() {
+    if (window.innerWidth < 415 && window.innerHeight < 668) {
+        content.style.margin = '70px 0 0 30px';
+    } else { content.style.margin = '16% 0 0 0' }
+}
+function sayItBitch() {
+    speechSynthesis.speak(new SpeechSynthesisUtterance(`${currentSentence}`))
+}
 // ===============================================GET RANDOMS===========================
 function randomArrayElement(array, changeFunction) {
     random_subject = Math.floor(Math.random() * array.length);
@@ -92,29 +98,26 @@ subjectPic.addEventListener('click', () => {
     get_random_subject();
 })
 textAreaQuestion.addEventListener('click', () => {
-    textAreaQuestion.style.opacity = '0';
     textSolution.style.opacity = '1';
+    sayItBitch();
 })
 textSolution.addEventListener('click', () => {
-    textSolution.style.opacity = '0';
-    textAreaQuestion.style.opacity = '1';
-
+    sayItBitch();
 })
 generateBtn.addEventListener('click', () => {
     colorsList.classList.add('hidden');
     testSimple();
+    moveContent();
+    textSolution.style.opacity = '0';
 })
 colorBlueBtn.addEventListener('click', () => {
     body.style.backgroundColor = 'rgb(60, 124, 241)';
-    console.log('fuck');
 });
 colorGreenBtn.addEventListener('click', () => {
     body.style.backgroundColor = 'rgb(0, 165, 50)';
-    console.log('fuck');
 });
 colorRedBtn.addEventListener('click', () => {
     body.style.backgroundColor = 'rgb(252, 56, 56)';
-    console.log('fuck');
 });
 
 //=========================================  TEST  ==================================

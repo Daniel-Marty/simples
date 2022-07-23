@@ -1,6 +1,8 @@
 html, body {
   box-sizing: border-box;
   height: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 *,
 *::before,
