@@ -22,7 +22,6 @@ const connectionWord = document.getElementById('firstConnection');
 const connectionLi = document.getElementById('connectionLi');
 const content = document.querySelector('.content');
 
-recogniser.lang = 'en-En';
 speechSynthesis.lang = 'en-En';
 const PrSStyle = 'rgb(0, 165, 50)';
 const FSStyle = 'rgb(252, 56, 56)';
