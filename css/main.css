@@ -185,6 +185,11 @@ body {
   cursor: pointer;
 }
 
+.select {
+  bottom: 100px;
+  width: 90%;
+}
+
 .prompt__word {
   opacity: 0;
   position: absolute;

@@ -22,7 +22,7 @@ const connectionWord = document.getElementById('firstConnection');
 const connectionLi = document.getElementById('connectionLi');
 const content = document.querySelector('.content');
 
-speechSynthesis.lang = 'en-En';
+
 const PrSStyle = 'rgb(0, 165, 50)';
 const FSStyle = 'rgb(252, 56, 56)';
 const PSStyle = 'rgb(60, 124, 241)';
@@ -35,14 +35,12 @@ let marks_array = ['1.png', '2.png', '3.png']
 let subject_array = ['he.jpg', 'it.jpg', 'I.jpg', 'she.jpg', 'they.jpg', 'we.jpg', 'you.jpg', 'nobody.jpg', 'cat.jpg', 'dog.jpg', 'somebody.jpg', 'David.jpg', 'Charlie.jpg', 'Emilia.jpg',]
 let verbs_array = ['be.jpg', 'need.jpg', 'can.jpg', 'want.jpg', 'fight.gif', 'drive.gif',]
 
-// ===================================SPEECH========================
-
-
 
 // =========================================FUNCTIONS CHANGE===============================
 function changeVerb(verbName) {
     verbPic.src = `./images-verbs/${verbName}`;
     verbPrompt.innerHTML = `${verbName.slice(0, -4)}`
+
 };
 function changeSubject(subjectName) {
     subjectPic.src = `./images-subject/${subjectName}`;
@@ -63,9 +61,7 @@ function moveContent() {
         content.style.margin = '70px 0 0 30px';
     } else { content.style.margin = '16% 0 0 0' }
 }
-function sayItBitch() {
-    speechSynthesis.speak(new SpeechSynthesisUtterance(`${currentSentence}`))
-}
+
 // ===============================================GET RANDOMS===========================
 function randomArrayElement(array, changeFunction) {
     random_subject = Math.floor(Math.random() * array.length);
@@ -89,7 +85,6 @@ burgerMenu.addEventListener('click', () => {
 });
 verbPic.addEventListener('click', () => {
     get_random_verb();
-    console.log('fucking verb');
 });
 mark.addEventListener('click', () => {
     get_random_mark();
@@ -288,4 +283,23 @@ function testSimple() {
     questionOpacityCheck();
     connectionHiddenCheck();
     timeMarkerOpacityCheck();
+}
+
+// ===================================SPEECH========================
+
+var speech = new SpeechSynthesisUtterance();
+speech.volume = 1;
+speech.rate = 1;
+speech.pitch = 1;
+speech.voice = window.speechSynthesis.getVoices()[6];
+console.log(speech);
+
+setTimeout(function () {
+    speech.voice = window.speechSynthesis.getVoices()[6];
+}, 500);
+
+function sayItBitch() {
+    speech.text = currentSentence;
+    window.speechSynthesis.speak(speech);
+    // speechSynthesis.speak(new SpeechSynthesisUtterance(`${currentSentence}`))
 }
