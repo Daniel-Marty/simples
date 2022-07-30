@@ -286,17 +286,34 @@ function testSimple() {
 }
 
 // ===================================SPEECH========================
-
+// var voices = window.speechSynthesis.getVoices();
 var speech = new SpeechSynthesisUtterance();
 speech.volume = 1;
+speech.lang = 'en-US';
+// speech.name = 'Google US English'
+
 speech.rate = 1;
 speech.pitch = 1;
-speech.voice = window.speechSynthesis.getVoices()[6];
+// speech.voice = window.speechSynthesis.getVoices()[6];
+var voiceName = 'Google US English'
 console.log(speech);
-
+// for (let i = 0; i < voices.length; i++) {
+//     if (voices[i].voiceURI.search('Google US English') != -1) {
+//         speech.voice = voices[i];
+//     }
+// }
+for (let i = 0; i < window.speechSynthesis.getVoices().length; i++) {
+    if (window.speechSynthesis.getVoices()[i].voiceURI.search(voiceName) != -1) {
+        speech.voice = window.speechSynthesis.getVoices()[i];
+    }
+}
 setTimeout(function () {
-    speech.voice = window.speechSynthesis.getVoices()[6];
-}, 500);
+    for (let i = 0; i < window.speechSynthesis.getVoices().length; i++) {
+        if (window.speechSynthesis.getVoices()[i].voiceURI.search(voiceName) != -1) {
+            speech.voice = window.speechSynthesis.getVoices()[i];
+        }
+    }
+}, 1000);
 
 function sayItBitch() {
     speech.text = currentSentence;
