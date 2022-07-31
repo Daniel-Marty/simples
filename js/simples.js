@@ -21,6 +21,7 @@ const timeMarker = document.getElementById('timeMarker');
 const connectionWord = document.getElementById('firstConnection');
 const connectionLi = document.getElementById('connectionLi');
 const content = document.querySelector('.content');
+let tensePrompt = document.getElementById('tensePrompt');
 
 
 const PrSStyle = 'rgb(0, 165, 50)';
@@ -34,7 +35,8 @@ const verbsFolder = './images-verbs/'
 let marks_array = ['1.png', '2.png', '3.png']
 let subject_array = ['he.jpg', 'it.jpg', 'I.jpg', 'she.jpg', 'they.jpg', 'we.jpg', 'you.jpg', 'nobody.jpg', 'cat.jpg', 'dog.jpg', 'somebody.jpg', 'David.jpg', 'Charlie.jpg', 'Emilia.jpg',]
 let verbs_array = ['be.jpg', 'need.jpg', 'can.jpg', 'want.jpg', 'fight.gif', 'drive.gif',]
-
+let markNegative = './images-marks/2.png';
+let markQuestion = './images-marks/3.png';
 
 // =========================================FUNCTIONS CHANGE===============================
 function changeVerb(verbName) {
@@ -47,6 +49,7 @@ function changeSubject(subjectName) {
     subjectPrompt.innerHTML = `${subjectName.slice(0, -4)}`
     // mark.style.right = '105px';
 };
+let fuckingShit = '';
 function changeMark(markName) {
     mark.src = `./images-marks/${markName}`
     if (markName === "3.png") {
@@ -56,13 +59,17 @@ function changeMark(markName) {
 function changeBodyStyle(selectedStyle) {
     body.style.backgroundColor = selectedStyle;
 };
+function changeTensePrompt(auxVerb) {
+    tensePrompt.style.opacity = '1';
+    tensePrompt.innerHTML = `${auxVerb}`;
+};
 function moveContent() {
     if (window.innerWidth < 415 && window.innerHeight < 740) {
-        content.style.margin = '70px 0 0 30px';
-    } else if (window.innerWidth > 666) {
+        content.style.margin = '120px 0 0 30px';
+    } else if (window.innerWidth > 666 && window.innerWidth < 767) {
         content.style.margin = '16% 0 0 0'
     }
-}
+};
 
 // ===============================================GET RANDOMS===========================
 function randomArrayElement(array, changeFunction) {
@@ -106,7 +113,7 @@ generateBtn.addEventListener('click', () => {
     testSimple();
     moveContent();
     textSolution.style.opacity = '0';
-})
+});
 colorBlueBtn.addEventListener('click', () => {
     body.style.backgroundColor = 'rgb(60, 124, 241)';
 });
@@ -117,23 +124,25 @@ colorRedBtn.addEventListener('click', () => {
     body.style.backgroundColor = 'rgb(252, 56, 56)';
 });
 
+
 //=========================================  TEST  ==================================
 
 let currentSentence = '';
+
 function testCallback(question, who, connection, mark1, verb, style, time, sentence) {
     questionWord.innerHTML = `${question}`
     changeSubject(who);
     connectionWord.innerHTML = `${connection}`
-    // mark.src = `${marksFolder}${mark1}`
     changeMark(mark1)
     verbPic.src = `${verbsFolder}${verb}`
     changeBodyStyle(style);
-    // verbDiv.style.boxShadow = style;
     changeVerb(verb);
     timeMarker.innerHTML = `${time}`
-
     textSolution.innerHTML = `${sentence}`
     currentSentence = sentence;
+    if (mark1 === "1.png") {
+        fuckingShit = '1';
+    } else { fuckingShit = '2' }
 };
 function questionOpacityCheck() {
     if (questionWord.innerHTML === ' ') {
@@ -152,7 +161,7 @@ function timeMarkerOpacityCheck() {
 };
 function testSimple() {
     let testRandomNumber = Math.floor(Math.random() * 62)
-    // let testRandomNumber = 2;
+    // let testRandomNumber = 61;
     console.log(testRandomNumber);
 
     if (testRandomNumber === 0) {
@@ -285,6 +294,8 @@ function testSimple() {
     questionOpacityCheck();
     connectionHiddenCheck();
     timeMarkerOpacityCheck();
+    sayTense();
+    tenseCheck();
 }
 
 // ===================================SPEECH========================
@@ -318,3 +329,29 @@ function sayItBitch() {
     window.speechSynthesis.speak(speech);
     // speechSynthesis.speak(new SpeechSynthesisUtterance(`${currentSentence}`))
 }
+function sayTense() {
+    if (body.style.backgroundColor == 'rgb(60, 124, 241)') {
+        speech.text = "past";
+        window.speechSynthesis.speak(speech);
+    } else if (body.style.backgroundColor == 'rgb(0, 165, 50)') {
+        speech.text = "present";
+        window.speechSynthesis.speak(speech);
+    } else {
+        speech.text = "future";
+        window.speechSynthesis.speak(speech);
+    }
+};
+// =========================================================
+function tenseCheck() {
+    if ((subjectPrompt.innerHTML === 'he' || subjectPrompt.innerHTML === 'she' || subjectPrompt.innerHTML === 'it') && body.style.backgroundColor === PrSStyle && connectionWord.innerHTML !== 'can' && questionWord.innerHTML !== 'can') {
+        changeTensePrompt('s');
+    } else if (fuckingShit === "1" && body.style.backgroundColor === PSStyle) {
+        changeTensePrompt('V2');
+    } else if (body.style.backgroundColor === PSStyle && fuckingShit === '2') {
+        changeTensePrompt('did');
+    } else if (body.style.backgroundColor === FSStyle && (connectionWord.innerHTML === 'can' || verbPic.src === '/images-verbs/can.jpg')) {
+        changeTensePrompt("will be able");
+    } else if (body.style.backgroundColor === FSStyle) {
+        changeTensePrompt("will");
+    } else { tensePrompt.style.opacity = '0' }
+};
