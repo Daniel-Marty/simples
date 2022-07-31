@@ -921,7 +921,7 @@ body {
     left: 5%;
   }
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 896px) {
   .header__burger {
     z-index: 55;
     position: absolute;
