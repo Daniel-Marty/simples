@@ -22,9 +22,9 @@ const connectionWord = document.getElementById('firstConnection');
 const connectionLi = document.getElementById('connectionLi');
 const content = document.querySelector('.content');
 let tensePrompt = document.getElementById('tensePrompt');
-const PrSarrayActivate = document.getElementById('PrSmenu');
-const PSarrayActivate = document.getElementById('PSmenu');
-const FSarrayActivate = document.getElementById('FSmenu');
+const PrSActivate = document.getElementById('PrSmenu');
+const PSActivate = document.getElementById('PSmenu');
+const FSActivate = document.getElementById('FSmenu');
 
 
 const PrSStyle = 'rgb(0, 165, 50)';
@@ -41,6 +41,7 @@ let verbs_array = ['be.jpg', 'need.jpg', 'can.jpg', 'want.jpg', 'fight.gif', 'dr
 let markNegative = './images-marks/2.png';
 let markQuestion = './images-marks/3.png';
 
+let currentTense = ' ';
 // =========================================FUNCTIONS CHANGE===============================
 function changeVerb(verbName) {
     verbPic.src = `./images-verbs/${verbName}`;
@@ -75,8 +76,7 @@ function moveContent() {
 };
 // =====================================RANDOM NUMBERS=====================================
 let randomNumbersAll = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62,]
-console.log(randomNumbersAll);
-let smallArray = [0, 1, 2, 3, 4, 5, 6, 7,]
+let pastArray = [2, 3, 4, 9, 16, 33, 17, 28, 18, 36, 37, 41, 42, 43, 44, 45, 46, 48, 49, 54,]
 let testRandomNumber = 0;
 // function getRandoms(array, ID, folder) {
 //     random_pic = Math.floor(Math.random() * array.length);
@@ -127,12 +127,27 @@ textAreaQuestion.addEventListener('click', () => {
 textSolution.addEventListener('click', () => {
     sayItBitch();
 })
+PrSActivate.addEventListener('click', () => {
+    currentTense = 'Present';
+});
+PSActivate.addEventListener('click', () => {
+    currentTense = 'Past';
+});
+FSActivate.addEventListener('click', () => {
+    currentTense = 'Future';
+});
 generateBtn.addEventListener('click', () => {
     colorsList.classList.add('hidden');
-    testSimple();
     moveContent();
     textSolution.style.opacity = '0';
-    getRandoms(randomNumbersAll);
+    if (currentTense === ' ') {
+        getRandoms(randomNumbersAll);
+    } else if (currentTense === 'Present') {
+        console.log('what the fuck man?');
+    } else if (currentTense === 'Past') {
+        getRandoms(pastArray);
+    }
+    testSimple();
 });
 colorBlueBtn.addEventListener('click', () => {
     body.style.backgroundColor = 'rgb(60, 124, 241)';
