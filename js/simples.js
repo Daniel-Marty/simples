@@ -22,6 +22,9 @@ const connectionWord = document.getElementById('firstConnection');
 const connectionLi = document.getElementById('connectionLi');
 const content = document.querySelector('.content');
 let tensePrompt = document.getElementById('tensePrompt');
+const PrSarrayActivate = document.getElementById('PrSmenu');
+const PSarrayActivate = document.getElementById('PSmenu');
+const FSarrayActivate = document.getElementById('FSmenu');
 
 
 const PrSStyle = 'rgb(0, 165, 50)';
@@ -70,6 +73,22 @@ function moveContent() {
         content.style.margin = '16% 0 0 0'
     }
 };
+// =====================================RANDOM NUMBERS=====================================
+let randomNumbersAll = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62,]
+console.log(randomNumbersAll);
+let smallArray = [0, 1, 2, 3, 4, 5, 6, 7,]
+let testRandomNumber = 0;
+// function getRandoms(array, ID, folder) {
+//     random_pic = Math.floor(Math.random() * array.length);
+//     selected_image = array[random_pic];
+//     ID.src = `${folder}${selected_image}`
+// }
+// let testRandomNumber = Math.floor(Math.random() * 62)
+function getRandoms(array) {
+    random_number = Math.floor(Math.random() * array.length);
+    testRandomNumber = array[random_number];
+    array.splice(random_number, 1);
+}
 
 // ===============================================GET RANDOMS===========================
 function randomArrayElement(array, changeFunction) {
@@ -113,6 +132,7 @@ generateBtn.addEventListener('click', () => {
     testSimple();
     moveContent();
     textSolution.style.opacity = '0';
+    getRandoms(randomNumbersAll);
 });
 colorBlueBtn.addEventListener('click', () => {
     body.style.backgroundColor = 'rgb(60, 124, 241)';
@@ -160,10 +180,9 @@ function timeMarkerOpacityCheck() {
     } else { timeMarker.style.opacity = '1' }
 };
 function testSimple() {
-    let testRandomNumber = Math.floor(Math.random() * 62)
+
     // let testRandomNumber = 61;
     console.log(testRandomNumber);
-
     if (testRandomNumber === 0) {
         testCallback('Usually', 'she.jpg', ' ', '1.png', 'walk.gif', PrSStyle, 'to school', "Usually she walks to school")
     } else if (testRandomNumber === 1) {
