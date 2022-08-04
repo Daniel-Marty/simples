@@ -25,6 +25,7 @@ let tensePrompt = document.getElementById('tensePrompt');
 const PrSActivate = document.getElementById('PrSmenu');
 const PSActivate = document.getElementById('PSmenu');
 const FSActivate = document.getElementById('FSmenu');
+const popup = document.getElementById('popup');
 
 
 const PrSStyle = 'rgb(0, 165, 50)';
@@ -43,6 +44,10 @@ let markQuestion = './images-marks/3.png';
 
 let currentTense = ' ';
 // =========================================FUNCTIONS CHANGE===============================
+function closePopup() {
+    popup.classList.add('close');
+    burger.style.zIndex = '13';
+}
 function changeVerb(verbName) {
     verbPic.src = `./images-verbs/${verbName}`;
     verbPrompt.innerHTML = `${verbName.slice(0, -4)}`
@@ -69,14 +74,16 @@ function changeTensePrompt(auxVerb) {
 };
 function moveContent() {
     if (window.innerWidth < 415 && window.innerHeight < 740) {
-        content.style.margin = '120px 0 0 30px';
-    } else if (window.innerWidth > 666 && window.innerWidth < 767) {
-        content.style.margin = '16% 0 0 0'
+        content.style.padding = '120px 0 0 30px';
+    } else if (window.innerWidth > 666) {
+        content.style.padding = '16% 0 0 0'
     }
 };
 // =====================================RANDOM NUMBERS=====================================
-let randomNumbersAll = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62,]
-let pastArray = [2, 3, 4, 9, 16, 33, 17, 28, 18, 36, 37, 41, 42, 43, 44, 45, 46, 48, 49, 54,]
+let randomNumbersAll = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62,];
+let pastArray = [2, 3, 4, 9, 16, 33, 17, 28, 18, 36, 37, 41, 42, 43, 44, 45, 46, 48, 49, 54,];
+let presentArray = [0, 1, 6, 7, 8, 10, 11, 12, 13, 14, 15, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 29, 31, 32, 38, 39, 40, 50, 55, 58, 59, 60,];
+let futureArray = [5, 30, 34, 35, 47, 51, 52, 53, 61,];
 let testRandomNumber = 0;
 // function getRandoms(array, ID, folder) {
 //     random_pic = Math.floor(Math.random() * array.length);
@@ -123,9 +130,11 @@ subjectPic.addEventListener('click', () => {
 textAreaQuestion.addEventListener('click', () => {
     textSolution.style.opacity = '1';
     sayItBitch();
+    closePopup()
 })
 textSolution.addEventListener('click', () => {
     sayItBitch();
+
 })
 PrSActivate.addEventListener('click', () => {
     currentTense = 'Present';
@@ -137,16 +146,17 @@ FSActivate.addEventListener('click', () => {
     currentTense = 'Future';
 });
 generateBtn.addEventListener('click', () => {
-    colorsList.classList.add('hidden');
+    closePopup();
+    // colorsList.classList.add('hidden');
     moveContent();
     textSolution.style.opacity = '0';
     if (currentTense === ' ') {
         getRandoms(randomNumbersAll);
     } else if (currentTense === 'Present') {
-        console.log('what the fuck man?');
+        getRandoms(presentArray);
     } else if (currentTense === 'Past') {
         getRandoms(pastArray);
-    }
+    } else { getRandoms(futureArray); }
     testSimple();
 });
 colorBlueBtn.addEventListener('click', () => {

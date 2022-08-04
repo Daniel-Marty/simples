@@ -20,15 +20,14 @@
 </head>
 
 <body id="body" class="body">
-
-   <div class="wrapper">
-    <header class="header">
+    
+<div class="container">
+    
         <div>
             <ul>
                 <li><p class="text prompt__word" id="promptWord">does</p></li>
                 <li><p class="text prompt__question">?</p></li>
             </ul>
-            
         </div>
     <!-- <div class="container">
             <nav class="header__menu">
@@ -42,19 +41,11 @@
     <div class="header__burger" id="burger">
         <span></span>
     </div> -->
-    </header>
     
-            <ul class="colors__list" id="colorsList">
-                <li class="color__item" id="colorBlue"><img class="color__blue"  src="./images-marks/blue.jpg" alt="color" width="30">
-                <p class="color__text">SIMPLE PAST</p></li>
-                <li class="color__item" id="colorGreen"><img class="color__green"  src="./images-marks/green.jpg" alt="color" width="30">
-                <p class="color__text">SIMPLE PRESENT</p></li>
-                <li class="color__item" id="colorRed"><img class="color__red"  src="./images-marks/red.jpg" alt="color" width="30">
-                <p class="color__text">SIMPLE FUTURE</p></li>
-            </ul>
+            <img class="color__item color__blue" id="colorBlue" src="./images-marks/blue.jpg" alt="color" width="40">
+            <img class="color__item color__green" id="colorGreen" src="./images-marks/green.jpg" alt="color" width="40">
+            <img class="color__item color__red" id="colorRed" src="./images-marks/red.jpg" alt="color" width="40">
             <p class="tense__prompt " id="tensePrompt">! did !</p>
-
-            
             <img class="generate__button" id="generateButton" src="./images-marks/playGreen.png" alt="GENERATE" height="80">
         <ul class="content">
             <li class="content__item"><p class="text questionWord" id="questionWord">Question word</p></li>
@@ -75,15 +66,9 @@
                 </div></li>
             <li class="content__item"><p class="text timeMarker" id="timeMarker">time marker</p></li>
         </ul>
-        
-   </div>
 
+    <p class="text_area" id="textSolution">This is where you will see the solution</p>
 
-   <ul>
-    <li><p class="text_area" id="textSolution">This is where you will see the solution</p></li>
-    <li></li>
-   </ul>
-<div class="container">
     <nav class="header__menu">
         <ul class="header__list">
             <li><p class="header__link" id="PrSmenu">Present Simple</p></li>
@@ -93,10 +78,21 @@
         <!-- <div><select name="voices" class="select" id="voiceSelect"></select></div> -->
     </nav>
    
-</div>
+
 <div class="header__burger" id="burger">
     <span></span>
 </div>
 <div><img class="speaker"  id="textAreaQuestion" src="./images-marks/speaker.png" alt="SPEAK" width="120"></div>
+<div class="popup" id="popup">
+    <div class="popup__body">
+        <div class="popup__content">
+            <img src="./images-marks/arrow-top.png" class="arrow__top" alt="arrow-top" height="100">
+            <p class="arrow__top__text text">PRESS PLAY<br>and say<br>the sentence</p>
+            <p class="arrow__bottom__text text">CHECK <br> YOURSELF</p>
+            <img src="./images-marks/arrow-bottom.png" class="arrow__bottom" alt="arrow-bottom" height="100">
+        </div>
+    </div>
+</div>
+</div>
     <script src="./js/simples.js"></script>
 </body>

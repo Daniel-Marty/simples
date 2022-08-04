@@ -1,14 +1,16 @@
 .generate__button{
+  z-index: 12;
   position: absolute;
-  top:15%;
-  right: 7%;
+  top:18%;
+  right: 9%;
 
   border-radius: 0;
 }
 .speaker {
+  z-index: 12;
   position: absolute;
   top:30%;
-  right:3%;
+  right:1%;
 }
 
 .tense{

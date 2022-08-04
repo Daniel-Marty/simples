@@ -1,23 +1,27 @@
 .container {
+    position: relative;
     // z-index: 500;
-    max-width: 1180px;
-    margin: 0 auto;
-    padding: 0 10px;
-}
-.header {
-    position: fixed;
-    top: 0;
     width: 100%;
-    left: 0;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    // margin: 0 auto;
+    // padding: 0 10px;
 }
+// .header {
+//     position: fixed;
+//     top: 0;
+//     width: 100%;
+//     left: 0;
+// }
 
 .header__burger {
-    z-index: 55;
+    z-index: 10;
     position: absolute;
     width: 30px;
     height: 22px;
-    top: 30px;
-    right: 3%;
+    top: 15px;
+    right: 15px;
 }
 
 .header__burger span {
@@ -26,7 +30,7 @@
     left: 0;
     width: 100%;
     height: 2px;
-    top: 9px;
+    top: 10px;
     transition: 300ms ease-out;
 }
 
@@ -68,36 +72,37 @@
 .header__link {
     text-transform: uppercase;
     color: white;
-    font-size: 18px;
+    font-size: 30px;
+    font-weight: bald;
     margin-left: 20px;
 }
 .header__menu {
-    z-index: 50;
+    z-index: 13;
     position: fixed;
     top: 0;
     left:-100%;
     overflow: auto;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.750);
-    padding: 70px 10px 20px 10px;
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 100px 10px 20px 10px;
     transition: 300ms ease-in;
 }
 .header__menu.active{
     left:0;
 }
 @media screen and (max-width:279px) {
-.content{
-    margin-top: 50px;
-}
+// .content{
+//     margin-top: 50px;
+// }
 .content__item {
     margin: 0 0 10px 10px;
 }
 }
 @media screen and (min-width:280px) {
 .content {
-        margin-top: 160px;
-        margin-left: 30px;
+        padding-top: 160px;
+        padding-left: 30px;
     }
     .content__item {
         margin: 0 0 20px 40px;
@@ -105,22 +110,29 @@
 }
 @media screen and (min-width:412px) {
     .content{
-        margin: 200px 0 0 60px;
+        padding: 200px 0 0 60px;
+    }
+    .arrow__top{
+        top:7%;
+    }
+    .arrow__bottom{
+        top:43%;
     }
 }
  @media screen and (min-width: 479px) {
 .content{
-    margin-top: 130px;
+    padding-top: 130px;
 } 
 .content__item{
     margin: 0 0 40px 60px;
     
 }
  }
+ 
  @media screen and (min-width: 667px) {
   .content{
     display: flex;
-        margin-top: 16%;
+        padding-top: 16%;
         margin-left: 0;
   }  
   .content__item {
@@ -138,27 +150,27 @@
   .prompt__question{
 top:30px;
 left:6%;
-
   }
   .generate__button{
-    top: 15%;
-    right: 5%;
+    top: 60px;
+    right: 10px;
   }
   .speaker{
-    top:60%;
-    left:5%;
+    top:200px;
+    left:10px;
   }
- }
+ 
+}
 @media screen and (min-width: 767px){
-    .content {
-            margin-top: 50%;
-            margin-left: 0;
-        }
+    .container {
+max-width: 1000px;
+    max-height: 900px;
+      }
 .header__burger{
 width: 50px;
 height: 31px;
-top: 40px;
-right:5%;
+top: 15px;
+right:15px;
 }
 .header__burger span {
     height: 3px;
