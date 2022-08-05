@@ -119,7 +119,7 @@ function get_random_mark() {
 function get_random_verb() {
     randomArrayElement(verbs_array, changeVerb);
 }
-function generateSentense() {
+function generateSentence() {
     textSolution.style.opacity = '0';
     if (currentTense === ' ') {
         getRandoms(randomNumbersAll);
@@ -156,43 +156,50 @@ textSolution.addEventListener('click', () => {
 
 generateBtn.addEventListener('click', () => {
     closePopup();
-    // colorsList.classList.add('hidden');
     moveContent();
-    generateSentense();
+    generateSentence();
 });
-PrSActivate.addEventListener('click', () => {
+function greenActivation() {
+    body.style.backgroundColor = 'rgb(0, 165, 50)';
     currentTense = 'Present';
     PrSActivate.classList.add('active__green');
     PSActivate.classList.remove('active__blue');
     FSActivate.classList.remove('active__red');
-
+}
+PrSActivate.addEventListener('click', () => {
+    greenActivation();
 });
-PSActivate.addEventListener('click', () => {
+colorGreenBtn.addEventListener('click', () => {
+    greenActivation();
+    generateSentence();
+});
+function blueActivation() {
+    body.style.backgroundColor = 'rgb(60, 124, 241)';
     currentTense = 'Past';
     PSActivate.classList.add('active__blue');
     PrSActivate.classList.remove('active__green');
     FSActivate.classList.remove('active__red');
+}
+PSActivate.addEventListener('click', () => {
+    blueActivation();
 });
-FSActivate.addEventListener('click', () => {
+colorBlueBtn.addEventListener('click', () => {
+    blueActivation();
+    generateSentence();
+});
+function redActivation() {
+    body.style.backgroundColor = 'rgb(252, 56, 56)';
     currentTense = 'Future';
     FSActivate.classList.add('active__red');
     PSActivate.classList.remove('active__blue');
     PrSActivate.classList.remove('active__green');
-});
-colorBlueBtn.addEventListener('click', () => {
-    body.style.backgroundColor = 'rgb(60, 124, 241)';
-    currentTense = 'Past';
-    generateSentense();
-});
-colorGreenBtn.addEventListener('click', () => {
-    body.style.backgroundColor = 'rgb(0, 165, 50)';
-    currentTense = 'Present';
-    generateSentense();
+}
+FSActivate.addEventListener('click', () => {
+    redActivation();
 });
 colorRedBtn.addEventListener('click', () => {
-    body.style.backgroundColor = 'rgb(252, 56, 56)';
-    currentTense = 'Future';
-    generateSentense();
+    redActivation();
+    generateSentence();
 });
 
 
