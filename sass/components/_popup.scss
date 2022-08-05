@@ -46,7 +46,7 @@
     position: absolute;
     width: 160px;
         left: 55px;
-        top: 55%;
+        top: 45%;
         font-size: 25px;
         padding: 7px;
         box-shadow: 2px 0px 23px 12px red;
@@ -60,6 +60,10 @@ left: 10%;
    .arrow__bottom {
        top: 150px;
        right: 30px;
+   }
+   .arrow__bottom__text.text {
+left: 135px;
+    top: 44%;
    }
    .arrow__top{
     top:40%;

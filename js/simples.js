@@ -51,7 +51,6 @@ function closePopup() {
 function changeVerb(verbName) {
     verbPic.src = `./images-verbs/${verbName}`;
     verbPrompt.innerHTML = `${verbName.slice(0, -4)}`
-
 };
 function changeSubject(subjectName) {
     subjectPic.src = `./images-subject/${subjectName}`;
@@ -79,6 +78,14 @@ function moveContent() {
         content.style.padding = '16% 0 0 0'
     }
 };
+function removeActiveClass() {
+    const currentGreen = document.querySelector('.header__link.active__green');
+    const currentBlue = document.querySelector('.header__link.active__blue');
+    const currentRed = document.querySelector('.header__link.active__red');
+    currentGreen.classList.remove('active__green');
+    currentBlue.classList.remove('active__blue');
+    currentRed.classList.remove('active__red');
+}
 // =====================================RANDOM NUMBERS=====================================
 let randomNumbersAll = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62,];
 let pastArray = [2, 3, 4, 9, 16, 33, 17, 28, 18, 36, 37, 41, 42, 43, 44, 45, 46, 48, 49, 54,];
@@ -112,6 +119,17 @@ function get_random_mark() {
 function get_random_verb() {
     randomArrayElement(verbs_array, changeVerb);
 }
+function generateSentense() {
+    textSolution.style.opacity = '0';
+    if (currentTense === ' ') {
+        getRandoms(randomNumbersAll);
+    } else if (currentTense === 'Present') {
+        getRandoms(presentArray);
+    } else if (currentTense === 'Past') {
+        getRandoms(pastArray);
+    } else { getRandoms(futureArray); }
+    testSimple();
+}
 // =======================================EVENT LISTENERS==============================
 burgerMenu.addEventListener('click', () => {
     burgerMenu.classList.toggle('active');
@@ -134,39 +152,47 @@ textAreaQuestion.addEventListener('click', () => {
 })
 textSolution.addEventListener('click', () => {
     sayItBitch();
-
 })
-PrSActivate.addEventListener('click', () => {
-    currentTense = 'Present';
-});
-PSActivate.addEventListener('click', () => {
-    currentTense = 'Past';
-});
-FSActivate.addEventListener('click', () => {
-    currentTense = 'Future';
-});
+
 generateBtn.addEventListener('click', () => {
     closePopup();
     // colorsList.classList.add('hidden');
     moveContent();
-    textSolution.style.opacity = '0';
-    if (currentTense === ' ') {
-        getRandoms(randomNumbersAll);
-    } else if (currentTense === 'Present') {
-        getRandoms(presentArray);
-    } else if (currentTense === 'Past') {
-        getRandoms(pastArray);
-    } else { getRandoms(futureArray); }
-    testSimple();
+    generateSentense();
+});
+PrSActivate.addEventListener('click', () => {
+    currentTense = 'Present';
+    PrSActivate.classList.add('active__green');
+    PSActivate.classList.remove('active__blue');
+    FSActivate.classList.remove('active__red');
+
+});
+PSActivate.addEventListener('click', () => {
+    currentTense = 'Past';
+    PSActivate.classList.add('active__blue');
+    PrSActivate.classList.remove('active__green');
+    FSActivate.classList.remove('active__red');
+});
+FSActivate.addEventListener('click', () => {
+    currentTense = 'Future';
+    FSActivate.classList.add('active__red');
+    PSActivate.classList.remove('active__blue');
+    PrSActivate.classList.remove('active__green');
 });
 colorBlueBtn.addEventListener('click', () => {
     body.style.backgroundColor = 'rgb(60, 124, 241)';
+    currentTense = 'Past';
+    generateSentense();
 });
 colorGreenBtn.addEventListener('click', () => {
     body.style.backgroundColor = 'rgb(0, 165, 50)';
+    currentTense = 'Present';
+    generateSentense();
 });
 colorRedBtn.addEventListener('click', () => {
     body.style.backgroundColor = 'rgb(252, 56, 56)';
+    currentTense = 'Future';
+    generateSentense();
 });
 
 
