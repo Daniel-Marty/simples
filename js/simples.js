@@ -74,7 +74,7 @@ function changeTensePrompt(auxVerb) {
 };
 function moveContent() {
     if (window.innerWidth < 415 && window.innerHeight < 740) {
-        content.style.padding = '120px 0 0 30px';
+        content.style.padding = '90px 0 0 30px';
     } else if (window.innerWidth > 666) {
         content.style.padding = '16% 0 0 0'
     }

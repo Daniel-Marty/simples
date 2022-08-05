@@ -2,7 +2,7 @@
     position: relative;
     // z-index: 500;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     margin-left: auto;
     margin-right: auto;
     // margin: 0 auto;
@@ -139,7 +139,6 @@
       margin: 0 0 0px 20px;
   }
   .text__area{
-    display: none;
     text-align: center;
     transform: translate(-50%, 0);
   }
@@ -156,10 +155,15 @@ left:6%;
     right: 10px;
   }
   .speaker{
-    top:200px;
+    top:50px;
     left:10px;
   }
  
+}
+@media screen and (orientation:landscape) {
+    .color__item{
+        margin-bottom: 50px;
+    }
 }
 @media screen and (min-width: 767px){
     .container {

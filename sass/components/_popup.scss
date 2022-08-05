@@ -26,6 +26,7 @@
     position: absolute;
     top:3%;
     right:18%;
+    transition: 300ms, ease-in;
 }
 .arrow__bottom {
     position: absolute;
@@ -34,7 +35,7 @@
 }
 .arrow__top__text.text{
     position: absolute;
-    left: 10%;
+    
     width: 180px;
     top: 15%;
     font-size: 25px;
@@ -44,19 +45,29 @@
 .arrow__bottom__text.text{
     position: absolute;
     width: 160px;
-        left: 13%;
-        top: 50%;
+        left: 55px;
+        top: 55%;
         font-size: 25px;
         padding: 7px;
         box-shadow: 2px 0px 23px 12px red;
+}
+@media screen and (max-width:666.8px){
+    .arrow__top__text.text {
+left: 10%;
+    }
 }
 @media screen and (min-width: 667px) {
    .arrow__bottom {
        top: 150px;
        right: 30px;
    }
+   .arrow__top{
+    top:40%;
+    left:40px;
+    transform: scale(-1, -1);
+   }
    .arrow__top__text.text{
-    left: 53%;
-    top:39%;
+    right: 140px;
+    top:40%;
    }
 }

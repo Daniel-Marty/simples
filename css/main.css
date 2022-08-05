@@ -109,7 +109,7 @@ body {
 
 .color__red {
   left: 10px;
-  top: 10px;
+  top: 15px;
   box-shadow: rgb(255, 5, 5) 0px 0px 4px 3px, rgb(255, 255, 255) 0px 0px 10px 5px;
 }
 
@@ -134,6 +134,7 @@ body {
   position: absolute;
   align-items: center;
   transition: 300ms ease-in;
+  margin-bottom: 30px;
 }
 
 .color__text {
@@ -178,9 +179,9 @@ body {
   z-index: 12;
   position: absolute;
   left: 50%;
-  bottom: 3%;
   transform: translate(-50%, 0);
-  padding: 5px;
+  bottom: 30px;
+  padding: 15px;
   opacity: 0;
   text-align: center;
   width: 80%;
@@ -200,6 +201,19 @@ body {
   cursor: pointer;
 }
 
+@media screen and (min-height: 668px) {
+  .text_area {
+    bottom: 100px;
+  }
+  .color__item {
+    margin-bottom: 100px;
+  }
+}
+@media screen and (min-width: 667px) {
+  .text__area {
+    bottom: 70px;
+  }
+}
 .select {
   bottom: 100px;
   width: 90%;
@@ -259,13 +273,6 @@ body {
 .firstConnectionWord {
   transition: 500ms var(--cubic-bezier);
   max-width: 120px;
-}
-
-.textArea__feedback {
-  position: absolute;
-  bottom: 12%;
-  left: 50%;
-  transform: translate(-50%, 0);
 }
 
 .generate__button {
@@ -839,7 +846,7 @@ body {
 .container {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   margin-left: auto;
   margin-right: auto;
 }
@@ -974,7 +981,6 @@ body {
     margin: 0 0 0px 20px;
   }
   .text__area {
-    display: none;
     text-align: center;
     transform: translate(-50%, 0);
   }
@@ -991,8 +997,13 @@ body {
     right: 10px;
   }
   .speaker {
-    top: 200px;
+    top: 50px;
     left: 10px;
+  }
+}
+@media screen and (orientation: landscape) {
+  .color__item {
+    margin-bottom: 50px;
   }
 }
 @media screen and (min-width: 767px) {
@@ -1054,6 +1065,7 @@ body {
   position: absolute;
   top: 3%;
   right: 18%;
+  transition: 300ms, ease-in;
 }
 
 .arrow__bottom {
@@ -1064,7 +1076,6 @@ body {
 
 .arrow__top__text.text {
   position: absolute;
-  left: 10%;
   width: 180px;
   top: 15%;
   font-size: 25px;
@@ -1075,20 +1086,30 @@ body {
 .arrow__bottom__text.text {
   position: absolute;
   width: 160px;
-  left: 13%;
-  top: 50%;
+  left: 55px;
+  top: 55%;
   font-size: 25px;
   padding: 7px;
   box-shadow: 2px 0px 23px 12px red;
 }
 
+@media screen and (max-width: 666.8px) {
+  .arrow__top__text.text {
+    left: 10%;
+  }
+}
 @media screen and (min-width: 667px) {
   .arrow__bottom {
     top: 150px;
     right: 30px;
   }
+  .arrow__top {
+    top: 40%;
+    left: 40px;
+    transform: scale(-1, -1);
+  }
   .arrow__top__text.text {
-    left: 53%;
-    top: 39%;
+    right: 140px;
+    top: 40%;
   }
 }/*# sourceMappingURL=main.css.map */

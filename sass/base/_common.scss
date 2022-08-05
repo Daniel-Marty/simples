@@ -23,7 +23,7 @@ body {
 
 .color__red {
   left: 10px;
-  top:10px;
+  top:15px;
   box-shadow: rgb(255, 5, 5) 0px 0px 4px 3px, rgb(255, 255, 255) 0px 0px 10px 5px;
 }
 
@@ -56,6 +56,7 @@ body {
   position: absolute;
   align-items: center;
   transition: 300ms ease-in;
+  margin-bottom: 30px;
 }
 .color__text{
   margin-left: 10px;
@@ -99,9 +100,9 @@ body {
   z-index: 12;
   position: absolute;
   left: 50%;
-  bottom: 3%;
   transform: translate(-50%, 0);
-  padding: 5px;
+  bottom: 30px;
+  padding:15px;
   opacity: 0;
   text-align: center;
   width: 80%;
@@ -121,6 +122,19 @@ body {
   &:focus {
 cursor: pointer;
 }
+}
+@media screen and (min-height: 668px) {
+  .text_area{
+    bottom: 100px
+  }
+  .color__item{
+    margin-bottom: 100px;
+  }
+}
+@media screen and (min-width: 667px) {
+    .text__area {
+        bottom: 70px;
+      }
 }
 .select{
   // position: absolute;
@@ -175,9 +189,9 @@ font-size: normal;
   transition: 500ms var(--cubic-bezier);
   max-width: 120px;
 }
-.textArea__feedback{
-  position: absolute;
-  bottom: 12%;
-  left: 50%;
-  transform: translate(-50%, 0);
-}
+// .textArea__feedback{
+//   position: absolute;
+//   bottom: 12%;
+//   left: 50%;
+//   transform: translate(-50%, 0);
+// }
