@@ -317,6 +317,11 @@ body {
   margin-bottom: 30px;
 }
 
+@media screen and (min-height: 668px) {
+  .color__item {
+    margin-bottom: 100px;
+  }
+}
 .prompt {
   z-index: 9;
   position: absolute;
