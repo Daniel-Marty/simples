@@ -25,8 +25,8 @@ let tensePrompt = document.getElementById('tensePrompt');
 const PrSActivate = document.getElementById('PrSmenu');
 const PSActivate = document.getElementById('PSmenu');
 const FSActivate = document.getElementById('FSmenu');
+const randomActive = document.getElementById('randomMenu');
 const popup = document.getElementById('popup');
-
 
 const PrSStyle = 'rgb(0, 165, 50)';
 const FSStyle = 'rgb(252, 56, 56)';
@@ -48,6 +48,7 @@ function closePopup() {
     popup.classList.add('close');
     burger.style.zIndex = '13';
 }
+
 function changeVerb(verbName) {
     verbPic.src = `./images-verbs/${verbName}`;
     verbPrompt.innerHTML = `${verbName.slice(0, -4)}`
@@ -78,13 +79,17 @@ function moveContent() {
         content.style.padding = '16% 0 0 0'
     }
 };
-function removeActiveClass() {
-    const currentGreen = document.querySelector('.header__link.active__green');
-    const currentBlue = document.querySelector('.header__link.active__blue');
-    const currentRed = document.querySelector('.header__link.active__red');
-    currentGreen.classList.remove('active__green');
-    currentBlue.classList.remove('active__blue');
-    currentRed.classList.remove('active__red');
+// ============================DEBOUNCE======================
+const debounce = (fn, delay) => {
+    let timeoutID;
+    return function (...args) {
+        if (timeoutID) {
+            clearTimeout(timeoutID);
+        }
+        timeoutID = setTimeout(() => {
+            fn(...args)
+        }, delay)
+    }
 }
 // =====================================RANDOM NUMBERS=====================================
 let randomNumbersAll = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62,];
@@ -136,6 +141,11 @@ burgerMenu.addEventListener('click', () => {
     headerMenu.classList.toggle('active');
     console.log('fucking burger');
 });
+const menuList = document.querySelector('.header__menu');
+menuList.addEventListener('click', () => {
+    menuList.classList.remove('active');
+    burgerMenu.classList.remove('active');
+})
 verbPic.addEventListener('click', () => {
     get_random_verb();
 });
@@ -147,60 +157,84 @@ subjectPic.addEventListener('click', () => {
 })
 textAreaQuestion.addEventListener('click', () => {
     textSolution.style.opacity = '1';
-    sayItBitch();
     closePopup()
 })
-textSolution.addEventListener('click', () => {
+textAreaQuestion.addEventListener('click', debounce(e => {
     sayItBitch();
-})
-
+}, 500));
+textSolution.addEventListener('click', debounce(e => {
+    sayItBitch();
+}, 500));
 generateBtn.addEventListener('click', () => {
     closePopup();
     moveContent();
     generateSentence();
 });
+generateBtn.addEventListener('click', debounce(e => {
+    sayTense();
+}, 500));
 function greenActivation() {
     body.style.backgroundColor = 'rgb(0, 165, 50)';
     currentTense = 'Present';
     PrSActivate.classList.add('active__green');
     PSActivate.classList.remove('active__blue');
     FSActivate.classList.remove('active__red');
+    randomActive.classList.remove('active__random');
 }
-PrSActivate.addEventListener('click', () => {
-    greenActivation();
-});
+
+PrSActivate.addEventListener('click', greenActivation);
 colorGreenBtn.addEventListener('click', () => {
     greenActivation();
     generateSentence();
 });
+colorGreenBtn.addEventListener('click', debounce(e => {
+    sayTense();
+    tenseCheck();
+}, 500));
 function blueActivation() {
     body.style.backgroundColor = 'rgb(60, 124, 241)';
     currentTense = 'Past';
     PSActivate.classList.add('active__blue');
     PrSActivate.classList.remove('active__green');
     FSActivate.classList.remove('active__red');
+    randomActive.classList.remove('active__random');
 }
-PSActivate.addEventListener('click', () => {
-    blueActivation();
-});
+PSActivate.addEventListener('click', blueActivation)
 colorBlueBtn.addEventListener('click', () => {
     blueActivation();
     generateSentence();
 });
+colorBlueBtn.addEventListener('click', debounce(e => {
+    sayTense();
+    tenseCheck();
+}, 500));
 function redActivation() {
     body.style.backgroundColor = 'rgb(252, 56, 56)';
     currentTense = 'Future';
     FSActivate.classList.add('active__red');
     PSActivate.classList.remove('active__blue');
     PrSActivate.classList.remove('active__green');
+    randomActive.classList.remove('active__random');
 }
-FSActivate.addEventListener('click', () => {
-    redActivation();
-});
+FSActivate.addEventListener('click', redActivation);
 colorRedBtn.addEventListener('click', () => {
     redActivation();
     generateSentence();
 });
+colorRedBtn.addEventListener('click', debounce(e => {
+    sayTense();
+    tenseCheck();
+}, 500));
+
+function randomActivate() {
+    body.style.backgroundColor = 'rgb(252, 56, 56)';
+    currentTense = ' ';
+    randomActive.classList.add('active__random');
+    FSActivate.classList.remove('active__red');
+    PSActivate.classList.remove('active__blue');
+    PrSActivate.classList.remove('active__green');
+}
+randomActive.addEventListener('click', randomActivate);
 
 
 //=========================================  TEST  ==================================
@@ -371,8 +405,8 @@ function testSimple() {
     questionOpacityCheck();
     connectionHiddenCheck();
     timeMarkerOpacityCheck();
-    sayTense();
-    tenseCheck();
+    // sayTense();
+    // tenseCheck();
 }
 
 // ===================================SPEECH========================
@@ -381,7 +415,6 @@ var speech = new SpeechSynthesisUtterance();
 speech.volume = 1;
 speech.lang = 'en-US';
 // speech.name = 'Google US English'
-
 speech.rate = 1;
 speech.pitch = 1;
 // speech.voice = window.speechSynthesis.getVoices()[6];

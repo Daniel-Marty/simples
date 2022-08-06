@@ -89,7 +89,7 @@ a {
 
 body {
   font-family: "roboto", sans-serif;
-  background-color: grey;
+  background-color: rgba(0, 0, 0, 0.865);
   height: 100vh;
   align-items: center;
   transition: 300ms ease-in;
@@ -769,8 +769,12 @@ body {
   box-shadow: rgb(0, 87, 250) 0px 0px 4px 3px, white 0px 0px 10px 5px;
 }
 
-.active__red {
+.header__link.active__red {
   box-shadow: rgb(255, 5, 5) 0px 0px 4px 3px, rgb(255, 255, 255) 0px 0px 10px 5px;
+}
+
+.header__link.active__random {
+  box-shadow: rgb(19, 246, 49) 0px 0px 4px 3px, rgb(0, 87, 250) 0px 0px 10px 7px, rgb(255, 5, 5) 0px 0px 15px 9px;
 }
 
 .container {
