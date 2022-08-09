@@ -3,14 +3,19 @@
   position: absolute;
   top:18%;
   right: 9%;
-
   border-radius: 0;
+  transition: 200ms var(--cubic-bezier);
 }
+// .generate__button:active{
+//   // scale: 1.4;
+//   // height: 100px;
+// }
 .speaker {
   z-index: 12;
   position: absolute;
   top:30%;
   right:1%;
+  transition: 200ms var(--cubic-bezier);
 }
 
 .tense{
@@ -68,6 +73,10 @@
   right: 10px;
   box-shadow: rgb(19, 246, 49) 0px 0px 4px 3px, rgb(255, 255, 255) 0px 0px 10px 5px;
 }
+// .color__green:focus-within{
+//   scale: 1.5;
+//   width: 100px;
+// }
 
 .color__red {
   left: 10px;
@@ -78,10 +87,14 @@
   position: absolute;
   align-items: center;
   transition: 300ms ease-in;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
+  transition: 300ms var(--cubic-bezier);
+}
+.color__item:active{
+  width: 60px;
 }
 @media screen and (min-height: 668px) {
   .color__item {
-    margin-bottom: 80px;
+    margin-bottom: 50px;
   }
 }

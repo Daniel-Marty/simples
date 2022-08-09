@@ -238,6 +238,7 @@ body {
   top: 18%;
   right: 9%;
   border-radius: 0;
+  transition: 200ms var(--cubic-bezier);
 }
 
 .speaker {
@@ -245,6 +246,7 @@ body {
   position: absolute;
   top: 30%;
   right: 1%;
+  transition: 200ms var(--cubic-bezier);
 }
 
 .tense {
@@ -314,12 +316,17 @@ body {
   position: absolute;
   align-items: center;
   transition: 300ms ease-in;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
+  transition: 300ms var(--cubic-bezier);
+}
+
+.color__item:active {
+  width: 60px;
 }
 
 @media screen and (min-height: 668px) {
   .color__item {
-    margin-bottom: 80px;
+    margin-bottom: 50px;
   }
 }
 .prompt {
