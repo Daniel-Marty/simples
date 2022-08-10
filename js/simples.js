@@ -27,6 +27,9 @@ const PSActivate = document.getElementById('PSmenu');
 const FSActivate = document.getElementById('FSmenu');
 const randomActive = document.getElementById('randomMenu');
 const popup = document.getElementById('popup');
+const questionsActive = document.getElementById('questionMenu');
+const negativeActive = document.getElementById('negativeMenu');
+const affirmativeActive = document.getElementById('affirmativeMenu');
 
 const PrSStyle = 'rgb(0, 165, 50)';
 const FSStyle = 'rgb(252, 56, 56)';
@@ -42,9 +45,10 @@ let verbs_array = ['be.jpg', 'need.jpg', 'can.jpg', 'want.jpg', 'fight.gif', 'dr
 let markNegative = './images-marks/2.png';
 let markQuestion = './images-marks/3.png';
 
-let currentTense = ' ';
+let currentArray = ' ';
 // =========================================FUNCTIONS CHANGE===============================
 function closePopup() {
+
     popup.classList.add('close');
     burger.style.zIndex = '13';
 }
@@ -93,10 +97,13 @@ const debounce = (fn, delay) => {
 }
 // =====================================RANDOM NUMBERS=====================================
 let randomNumbersAll = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240,];
-let pastArray = [1, 2, 3, 8, 9, 10, 15, 19, 21, 27, 28, 29, 31, 32, 34, 36, 37, 42, 51, 52, 53, 54, 58, 65, 66, 75, 76, 78, 80, 82, 84, 85, 93, 97, 98, 99, 100, 102, 104, 105, 108, 109, 114, 119, 122, 123, 129, 130, 131, 134, 135, 140, 145, 152, 153, 158, 159, 161, 166, 169, 171, 172, 173, 174, 177, 181, 184, 187, 190, 191, 195, 197, 200, 203, 204, 207, 220, 234, 235, 237, 239, 240,];
-let presentArray = [0, 5, 7, 12, 13, 14, 16, 17, 18, 22, 23, 24, 25, 30, 35, 38, 39, 40, 41, 45, 46, 47, 49, 50, 55, 56, 57, 62, 63, 64, 69, 71, 72, 77, 79, 86, 87, 89, 90, 91, 92, 96, 103, 111, 112, 113, , 115, 116, 118, 121, 126, 133, 136, 137, 146, 147, 148, 149, 150, 151, 154, 155, 156, 157, 162, 163, 165, 170, 175, 176, 179, 180, 182, 183, 185, 186, 188, 189, 192, 193, 194, 196, 198, 201, 202, 208, 209, 210, 211, 216, 217, 218, 219, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 236, 238, 241,];
-let futureArray = [4, 6, 11, 20, 26, 33, 43, 44, 48, 59, 60, 61, 67, 68, 70, 73, 74, 81, 83, 88, 94, 95, 101, 106, 107, 110, 117, 120, 124, 125, 127, 128, 132, 138, 139, 141, 142, 143, 160, 164, 167, 168, 178, 199, 205, 206, 212, 213, 214, 215,];
+let pastArray = [1, 3, 8, 9, 10, 15, 19, 21, 27, 28, 29, 31, 32, 34, 36, 37, 42, 51, 52, 53, 54, 58, 65, 66, 75, 76, 78, 80, 82, 84, 85, 93, 97, 98, 99, 100, 102, 104, 105, 108, 109, 114, 119, 122, 123, 129, 130, 131, 134, 135, 140, 144, 145, 152, 153, 158, 159, 161, 166, 169, 171, 172, 173, 174, 177, 181, 184, 187, 190, 191, 195, 197, 200, 203, 204, 207, 220, 234, 235, 237, 239, 240,];
+let presentArray = [0, 5, 7, 12, 13, 14, 16, 17, 18, 22, 23, 24, 25, 30, 35, 38, 39, 40, 41, 45, 46, 47, 49, 50, 55, 56, 57, 62, 63, 64, 69, 71, 72, 77, 79, 86, 87, 89, 90, 91, 92, 96, 103, 111, 112, 113, , 115, 116, 118, 121, 126, 133, 136, 137, 142, 146, 147, 148, 149, 150, 151, 154, 155, 156, 157, 162, 163, 165, 170, 175, 176, 179, 180, 182, 183, 185, 186, 188, 189, 192, 193, 194, 196, 198, 201, 202, 208, 209, 210, 211, 214, 216, 217, 218, 219, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 236, 238, 241,];
+let futureArray = [2, 4, 6, 11, 20, 26, 33, 43, 44, 48, 59, 60, 61, 67, 68, 70, 73, 74, 81, 83, 88, 94, 95, 101, 106, 107, 110, 117, 120, 124, 125, 127, 128, 132, 138, 139, 141, 143, 160, 164, 167, 168, 178, 199, 205, 206, 212, 213, 215,];
 let testRandomNumber = 0;
+let questionsArray = [10, 14, 17, 24, 33, 41, 43, 48, 51, 52, 53, 58, 59, 60, 62, 68, 84, 88, 95, 104, 106, 109, 111, 114, 116, 117, 119, 121, 124, 131, 132, 135, 141, 151, 153, 156, 159, 161, 165, 169, 172, 177, 180, 181, 182, 183, 184, 188, 189, 190, 194, 197, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 217, 218, 219, 220, 222, 224, 225, 226, 229, 231, 236, 237, 238, 239, 240,];
+let negativesArray = [1, 5, 6, 7, 9, 13, 16, 22, 25, 29, 34, 35, 37, 39, 40, 44, 45, 47, 54, 55, 56, 61, 64, 66, 72, 74, 76, 83, 85, 86, 89, 94, 96, 99, 115, 118, 123, 125, 126, 128, 130, 133, 134, 139, 142, 146, 149, 150, 152, 155, 157, 158, 160, 162, 163, 164, 166, 168, 170, 173, 175, 178, 179, 186, 187, 191, 193, 195, 198, 199, 200, 201, 202, 203, 204, 205, 233, 235,];
+let affirmativeArray = [0, 2, 3, 4, 8, 11, 12, 15, 18, 19, 20, 21, 23, 26, 27, 28, 30, 31, 32, 36, 38, 42, 46, 49, 50, 57, 63, 65, 67, 69, 70, 71, 73, 75, 77, 78, 79, 80, 81, 82, 87, 90, 91, 92, 93, 97, 98, 100, 101, 102, 103, 105, 107, 108, 110, 112, 113, 120, 122, 127, 129, 136, 137, 138, 140, 143, 144, 145, 147, 148, 154, 167, 171, 174, 176, 185, 192, 196, 216, 221, 223, 227, 228, 230, 232, 234, 241,];
 // function getRandoms(array, ID, folder) {
 //     random_pic = Math.floor(Math.random() * array.length);
 //     selected_image = array[random_pic];
@@ -126,13 +133,21 @@ function get_random_verb() {
 }
 function generateSentence() {
     textSolution.style.opacity = '0';
-    if (currentTense === ' ') {
+    if (currentArray === ' ') {
         getRandoms(randomNumbersAll);
-    } else if (currentTense === 'Present') {
+    } else if (currentArray === 'Present') {
         getRandoms(presentArray);
-    } else if (currentTense === 'Past') {
+    } else if (currentArray === 'Past') {
         getRandoms(pastArray);
-    } else { getRandoms(futureArray); }
+    } else if (currentArray === 'Future') {
+        getRandoms(futureArray)
+    } else if (currentArray === 'questions') {
+        getRandoms(questionsArray)
+    } else if (currentArray === 'negatives') {
+        getRandoms(negativesArray)
+    } else {
+        getRandoms(affirmativeArray)
+    }
     testSimple();
 }
 // =======================================EVENT LISTENERS==============================
@@ -141,10 +156,12 @@ burgerMenu.addEventListener('click', () => {
     headerMenu.classList.toggle('active');
     console.log('fucking burger');
 });
-const menuList = document.querySelector('.header__menu');
-menuList.addEventListener('click', () => {
-    menuList.classList.remove('active');
-    burgerMenu.classList.remove('active');
+const backdrop = document.querySelector('.header__menu');
+backdrop.addEventListener('click', (e) => {
+    if (e.currentTarget === e.target) {
+        backdrop.classList.remove('active');
+        burgerMenu.classList.remove('active');
+    }
 })
 verbPic.addEventListener('click', () => {
     get_random_verb();
@@ -169,12 +186,13 @@ textSolution.addEventListener('click', debounce(e => {
     sayItBitch();
 }, 700));
 generateBtn.addEventListener('click', () => {
+    tensePrompt.style.opacity = '0'
+    setTimeout(tenseCheck, 1500);
     generateBtn.style.scale = '1.4';
     closePopup();
     moveContent();
     generateSentence();
     setTimeout(returnScale, 190);
-
 });
 generateBtn.addEventListener('click', debounce(e => {
     sayTense();
@@ -186,18 +204,19 @@ function returnScale() {
     colorRedBtn.style.scale = '1';
     textAreaQuestion.style.scale = '1';
 }
+const menuBonusButtons = document.querySelectorAll('.header__link.right');
+
 function greenActivation() {
     body.style.backgroundColor = 'rgb(0, 165, 50)';
-    currentTense = 'Present';
+    currentArray = 'Present';
+    removeShadows();
     PrSActivate.classList.add('active__green');
-    PSActivate.classList.remove('active__blue');
-    FSActivate.classList.remove('active__red');
-    randomActive.classList.remove('active__random');
 }
-
 PrSActivate.addEventListener('click', greenActivation);
 colorGreenBtn.addEventListener('click', () => {
     colorGreenBtn.style.scale = '1.4'
+    tensePrompt.style.opacity = '0'
+    setTimeout(tenseCheck, 1500);
     greenActivation();
     generateSentence();
     setTimeout(returnScale, 200);
@@ -208,14 +227,16 @@ colorGreenBtn.addEventListener('click', debounce(e => {
 }, 700));
 function blueActivation() {
     body.style.backgroundColor = 'rgb(60, 124, 241)';
-    currentTense = 'Past';
+    currentArray = 'Past';
+    removeShadows();
     PSActivate.classList.add('active__blue');
-    PrSActivate.classList.remove('active__green');
-    FSActivate.classList.remove('active__red');
-    randomActive.classList.remove('active__random');
 }
-PSActivate.addEventListener('click', blueActivation)
+PSActivate.addEventListener('click', () => {
+    blueActivation();
+})
 colorBlueBtn.addEventListener('click', () => {
+    tensePrompt.style.opacity = '0'
+    setTimeout(tenseCheck, 1500);
     colorBlueBtn.style.scale = '1.4'
     blueActivation();
     generateSentence();
@@ -225,16 +246,27 @@ colorBlueBtn.addEventListener('click', debounce(e => {
     sayTense();
     tenseCheck();
 }, 700));
-function redActivation() {
-    body.style.backgroundColor = 'rgb(252, 56, 56)';
-    currentTense = 'Future';
-    FSActivate.classList.add('active__red');
+function removeShadows() {
+    FSActivate.classList.remove('active__red');
     PSActivate.classList.remove('active__blue');
     PrSActivate.classList.remove('active__green');
     randomActive.classList.remove('active__random');
+    questionsActive.classList.remove('active__white');
+    negativeActive.classList.remove('active__white');
+    affirmativeActive.classList.remove('active__white');
 }
-FSActivate.addEventListener('click', redActivation);
+function redActivation() {
+    removeShadows();
+    body.style.backgroundColor = 'rgb(252, 56, 56)';
+    currentArray = 'Future';
+    FSActivate.classList.add('active__red');
+}
+FSActivate.addEventListener('click', () => {
+    redActivation();
+});
 colorRedBtn.addEventListener('click', () => {
+    tensePrompt.style.opacity = '0'
+    setTimeout(tenseCheck, 1500);
     colorRedBtn.style.scale = '1.4';
     redActivation();
     generateSentence();
@@ -247,14 +279,26 @@ colorRedBtn.addEventListener('click', debounce(e => {
 
 function randomActivate() {
     body.style.backgroundColor = 'rgb(252, 56, 56)';
-    currentTense = ' ';
+    currentArray = ' ';
+    removeShadows();
     randomActive.classList.add('active__random');
-    FSActivate.classList.remove('active__red');
-    PSActivate.classList.remove('active__blue');
-    PrSActivate.classList.remove('active__green');
 }
 randomActive.addEventListener('click', randomActivate);
-
+questionsActive.addEventListener('click', () => {
+    currentArray = 'questions';
+    removeShadows();
+    questionsActive.classList.add('active__white');
+});
+negativeActive.addEventListener('click', () => {
+    currentArray = 'negatives';
+    removeShadows();
+    negativeActive.classList.add('active__white');
+});
+affirmativeActive.addEventListener('click', () => {
+    currentArray = 'affirmatives';
+    removeShadows();
+    affirmativeActive.classList.add('active__white');
+});
 
 //=========================================  TEST  ==================================
 
@@ -292,14 +336,14 @@ function timeMarkerOpacityCheck() {
 };
 function testSimple() {
 
-    // let testRandomNumber = 117;
+    // let testRandomNumber = 3;
     console.log(testRandomNumber);
     if (testRandomNumber === 0) {
         testCallback('Usually', 'she.jpg', ' ', '1.png', 'walk.gif', PrSStyle, 'to school', "Usually she walks to school");
     } else if (testRandomNumber === 1) {
         testCallback(' ', 'Charlie.jpg', ' ', '2.png', 'walk.gif', PSStyle, 'with her', "Charlie didn't walk with her");
     } else if (testRandomNumber === 2) {
-        testCallback(' ', 'Nobody.jpg', 'can', '1.png', 'walk.gif', PSStyle, ' ', "Nobody will be able to walk");
+        testCallback(' ', 'Nobody.jpg', 'can', '1.png', 'walk.gif', FSStyle, ' ', "Nobody will be able to walk");
     } else if (testRandomNumber === 3) {
         testCallback(' ', 'Nobody.jpg', 'can', '1.png', 'walk.gif', PSStyle, 'because they were drunk', "Nobody could walk because they were drunk");
     } else if (testRandomNumber === 4) {
@@ -449,9 +493,9 @@ function testSimple() {
     } else if (testRandomNumber === 76) {
         testCallback(' ', 'cat.jpg', " ", '2.png', 'help.gif', PSStyle, ' ', "The cat didn't help");
     } else if (testRandomNumber === 77) {
-        testCallback('There is', 'nobody.jpg', "to", '1.png', 'help.gif', PrSStyle, 'you', "There is nobody to help you")
+        testCallback('There', ',.png', " ", '1.png', 'be.jpg', PrSStyle, 'nobody to help you', "There is nobody to help you")
     } else if (testRandomNumber === 78) {
-        testCallback('There was', 'nobody.jpg', "to", '1.png', 'help.gif', PSStyle, 'you yesterday', "There was nobody to help you yesterday")
+        testCallback('There', ',.png', " ", '1.png', 'be.jpg', PSStyle, 'nobody to help you', "There was nobody to help you")
     } else if (testRandomNumber === 79) {
         testCallback(' ', 'he.jpg', "usually", '1.png', 'go.gif', PrSStyle, 'there on Sundays', "He usually goes there on Sundays");
     } else if (testRandomNumber === 80) {
@@ -521,7 +565,7 @@ function testSimple() {
     } else if (testRandomNumber === 112) {
         testCallback(' ', 'Emilia.jpg', " ", '1.png', 'arrive.gif', PrSStyle, ' ', "Emilia arrives next Saturday");
     } else if (testRandomNumber === 113) {
-        testCallback('It', ',.jpg', " ", '1.png', 'be.jpg', PrSStyle, "your sister's birthday tomorrow", "It's your sister's birthday tomorrow");
+        testCallback('It', ',.png', " ", '1.png', 'be.jpg', PrSStyle, "your sister's birthday tomorrow", "It's your sister's birthday tomorrow");
     } else if (testRandomNumber === 114) {
         testCallback('Where', 'he.jpg', " ", '3.png', 'work.gif', PSStyle, 'last year', "Where did he work last year?");
     } else if (testRandomNumber === 115) {
@@ -579,9 +623,11 @@ function testSimple() {
     } else if (testRandomNumber === 141) {
         testCallback(' ', 'you.jpg', " ", '3.png', 'come back.gif', FSStyle, ' ', "Will you come back?");
     } else if (testRandomNumber === 142) {
-        testCallback(' ', ',.png', "ever", '2.png', 'come back.gif', FSStyle, ' ', "Don't ever come back");
+        testCallback(' ', ',.png', "ever", '2.png', 'come back.gif', PrSStyle, ' ', "Don't ever come back");
     } else if (testRandomNumber === 143) {
         testCallback(' ', ',.png', " ", '1.png', 'come back.gif', FSStyle, 'here', "Come back here");
+    } else if (testRandomNumber === 144) {
+        testCallback(' ', 'I.jpg', " ", '1.png', 'come back.gif', PSStyle, 'as soon as I could', "I came back as soon as I could");
     } else if (testRandomNumber === 145) {
         testCallback('I think', 'dog.jpg', " ", '1.png', 'be.jpg', PSStyle, 'here a moment ago', "I think the dog was here a moment ago");
     } else if (testRandomNumber === 146) {
@@ -687,7 +733,7 @@ function testSimple() {
     } else if (testRandomNumber === 196) {
         testCallback(" ", 'it.jpg', " ", '1.png', 'happen.gif', PrSStyle, "sometimes", "It happens sometimes");
     } else if (testRandomNumber === 197) {
-        testCallback(" ", 'it.jpg', " ", '3.png', 'happen.jpg', PSStyle, "to you yesterday", "Did it happen to you yesterday?");
+        testCallback(" ", 'it.jpg', " ", '3.png', 'happen.gif', PSStyle, "to you yesterday", "Did it happen to you yesterday?");
     } else if (testRandomNumber === 198) {
         testCallback("Usually", 'it.jpg', " ", '2.png', 'happen.gif', PrSStyle, " ", "Usually it doesn't happen");
     } else if (testRandomNumber === 199) {
@@ -721,9 +767,9 @@ function testSimple() {
     } else if (testRandomNumber === 213) {
         testCallback("Who", ',.png', " ", '3.png', 'be.jpg', FSStyle, "there", "Who will be there?");
     } else if (testRandomNumber === 214) {
-        testCallback("Where", ',.png', " ", '3.png', 'be.jpg', FSStyle, "it", "Where is it?");
+        testCallback("Where", ',.png', " ", '3.png', 'be.jpg', PrSStyle, "it", "Where is it?");
     } else if (testRandomNumber === 215) {
-        testCallback("Where", ',.png', " ", '3.png', 'be.jpg', FSStyle, "the bathroom", "Where is the bathroom?");
+        testCallback("Where", ',.png', " ", '3.png', 'be.jpg', PrSStyle, "the bathroom", "Where is the bathroom?");
     } else if (testRandomNumber === 216) {
         testCallback(" ", 'it.jpg', " ", '1.png', 'be.jpg', PrSStyle, " ", "It's over there");
     } else if (testRandomNumber === 217) {
@@ -829,9 +875,9 @@ function sayTense() {
 };
 // =========================================================
 function tenseCheck() {
-    if ((subjectPrompt.innerHTML === 'he' || subjectPrompt.innerHTML === 'she' || subjectPrompt.innerHTML === 'it') && body.style.backgroundColor === PrSStyle && connectionWord.innerHTML !== 'can' && questionWord.innerHTML !== 'can') {
+    if ((subjectPrompt.innerHTML === 'he' || subjectPrompt.innerHTML === 'she' || subjectPrompt.innerHTML === 'it' || subjectPrompt.innerHTML === 'Emilia' || subjectPrompt.innerHTML === 'David' || subjectPrompt.innerHTML === 'Kianu' || subjectPrompt.innerHTML === 'dog' || subjectPrompt.innerHTML === 'cat') && body.style.backgroundColor === PrSStyle && (connectionWord.innerHTML !== 'can' && questionWord.innerHTML !== 'can' && connectionWord.innerHTML !== 'never') || (verbPic.src === '/images-verbs/be.jpg' && fuckingShit === '2')) {
         changeTensePrompt('s');
-    } else if (fuckingShit === "1" && body.style.backgroundColor === PSStyle) {
+    } else if (fuckingShit === "1" && body.style.backgroundColor === PSStyle || connectionWord.innerHTML === 'can' || verbPic.src === "./images-verbs/be.jpg") {
         changeTensePrompt('V2');
     } else if (body.style.backgroundColor === PSStyle && fuckingShit === '2') {
         changeTensePrompt('did');

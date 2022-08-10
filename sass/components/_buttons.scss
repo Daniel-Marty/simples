@@ -90,9 +90,9 @@
   margin-bottom: 10px;
   transition: 300ms var(--cubic-bezier);
 }
-.color__item:active{
-  width: 60px;
-}
+// .color__item:active{
+//   width: 60px;
+// }
 @media screen and (min-height: 668px) {
   .color__item {
     margin-bottom: 50px;
