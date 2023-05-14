@@ -1,74 +1,10 @@
-const body = document.getElementById('body')
-const burgerMenu = document.querySelector('.header__burger');
-const headerMenu = document.querySelector('.header__menu');
-const burger = document.getElementById('burger');
-const questionWord = document.getElementById('questionWord');
-const textAreaQuestion = document.getElementById('textAreaQuestion');
-const textSolution = document.getElementById('textSolution');
-const colorsList = document.getElementById('colorsList');
-const generateBtn = document.getElementById('generateButton');
-const mark = document.getElementById('mark');
-const verbPrompt = document.getElementById('verbPrompt');
-const input = document.getElementById('input');
-const verbDiv = document.getElementById('verb');
-const verbPic = document.getElementById('verbPic');
-const subjectPic = document.getElementById('subject');
-const subjectPrompt = document.getElementById('subjectPrompt');
-const colorBlueBtn = document.getElementById('colorBlue');
-const colorGreenBtn = document.getElementById('colorGreen');
-const colorRedBtn = document.getElementById('colorRed');
-const timeMarker = document.getElementById('timeMarker');
-const connectionWord = document.getElementById('firstConnection');
-const connectionLi = document.getElementById('connectionLi');
-const content = document.querySelector('.content');
-let tensePrompt = document.getElementById('tensePrompt');
-const PrSActivate = document.getElementById('PrSmenu');
-const PSActivate = document.getElementById('PSmenu');
-const FSActivate = document.getElementById('FSmenu');
-const randomActive = document.getElementById('randomMenu');
-const popup = document.getElementById('popup');
-const questionsActive = document.getElementById('questionMenu');
-const negativeActive = document.getElementById('negativeMenu');
-const affirmativeActive = document.getElementById('affirmativeMenu');
-
-const PrSStyle = 'rgb(0, 165, 50)';
-const FSStyle = 'rgb(252, 56, 56)';
-const PSStyle = 'rgb(60, 124, 241)';
-
-const marksFolder = './images-marks/'
-const subjectFolder = './images-subject/'
-const verbsFolder = './images-verbs/'
-
-let marks_array = ['1.png', '2.png', '3.png']
-let subject_array = ['he.jpg', 'it.jpg', 'I.jpg', 'she.jpg', 'they.jpg', 'we.jpg', 'you.jpg', 'nobody.jpg', 'cat.jpg', 'dog.jpg', 'somebody.jpg', 'David.jpg', 'Charlie.jpg', 'Emilia.jpg',]
-let verbs_array = ['be.jpg', 'need.jpg', 'can.jpg', 'want.jpg', 'fight.gif', 'drive.gif',]
-let markNegative = './images-marks/2.png';
-let markQuestion = './images-marks/3.png';
-
-let currentArray = ' ';
+import { body, burgerMenu, headerMenu, burger, questionWord, textAreaQuestion, textSolution, colorsList, generateBtn, mark, verbPrompt, input, verbDiv, verbPic, subjectPrompt, colorBlueBtn, colorGreenBtn, colorRedBtn, timeMarker, connectionWord, connectionLi, content, tensePrompt, PrSActivate, PSActivate, FSActivate, randomActive, popup, questionsActive, negativeActive, affirmativeActive, PrSStyle, FSStyle, PSStyle, marksFolder, subjectFolder, verbsFolder, marks_array, subject_array, verbs_array, markNegative, markQuestion } from './vars.js';
+import { changeVerb, changeSubject, changeMark, closePopup, subjectPic, get_random_mark, get_random_subject } from './functions.js'
 // =========================================FUNCTIONS CHANGE===============================
-function closePopup() {
-
-    popup.classList.add('close');
-    burger.style.zIndex = '13';
-}
-
-function changeVerb(verbName) {
-    verbPic.src = `./images-verbs/${verbName}`;
-    verbPrompt.innerHTML = `${verbName.slice(0, -4)}`
-};
-function changeSubject(subjectName) {
-    subjectPic.src = `./images-subject/${subjectName}`;
-    subjectPrompt.innerHTML = `${subjectName.slice(0, -4)}`
-    // mark.style.right = '105px';
-};
+let currentArray = ' ';
 let fuckingShit = '';
-function changeMark(markName) {
-    mark.src = `./images-marks/${markName}`
-    if (markName === "3.png") {
-        mark.style.right = '105px';
-    } else { mark.style.right = '0px' }
-};
+
+
 function changeBodyStyle(selectedStyle) {
     body.style.backgroundColor = selectedStyle;
 };
@@ -111,26 +47,29 @@ let affirmativeArray = [0, 2, 3, 4, 8, 11, 12, 15, 18, 19, 20, 21, 23, 26, 27, 2
 // }
 // let testRandomNumber = Math.floor(Math.random() * 62)
 function getRandoms(array) {
-    random_number = Math.floor(Math.random() * array.length);
+    let random_number = Math.floor(Math.random() * array.length);
     testRandomNumber = array[random_number];
     array.splice(random_number, 1);
 }
 
 // ===============================================GET RANDOMS===========================
 function randomArrayElement(array, changeFunction) {
-    random_subject = Math.floor(Math.random() * array.length);
-    selected_image = array[random_subject]
+    let random_subject = Math.floor(Math.random() * array.length);
+    let selected_image = array[random_subject]
     changeFunction(selected_image);
 }
-function get_random_subject() {
-    randomArrayElement(subject_array, changeSubject);
-}
-function get_random_mark() {
-    randomArrayElement(marks_array, changeMark);
-}
+// function get_random_subject() {
+//     randomArrayElement(subject_array, changeSubject);
+// }
+
 function get_random_verb() {
     randomArrayElement(verbs_array, changeVerb);
 }
+document.addEventListener("keydown", (e) => {
+    if (e.code === "KeyV") {
+        get_random_verb();
+    }
+},);
 function generateSentence() {
     textSolution.style.opacity = '0';
     if (currentArray === ' ') {
@@ -154,8 +93,13 @@ function generateSentence() {
 burgerMenu.addEventListener('click', () => {
     burgerMenu.classList.toggle('active');
     headerMenu.classList.toggle('active');
-    console.log('fucking burger');
 });
+document.addEventListener("keydown", (e) => {
+    if (e.code === "ShiftLeft") {
+        burgerMenu.classList.toggle('active');
+        headerMenu.classList.toggle('active');
+    }
+},);
 const backdrop = document.querySelector('.header__menu');
 backdrop.addEventListener('click', (e) => {
     if (e.currentTarget === e.target) {
@@ -181,10 +125,24 @@ textAreaQuestion.addEventListener('click', () => {
 })
 textAreaQuestion.addEventListener('click', debounce(e => {
     sayItBitch();
+
 }, 700));
 textSolution.addEventListener('click', debounce(e => {
     sayItBitch();
 }, 700));
+document.addEventListener('keydown', debounce(e => {
+    if (e.code === "Space") {
+        sayItBitch();
+    }
+}, 700));
+document.addEventListener("keydown", (e) => {
+    if (e.code === "Space") {
+        textAreaQuestion.style.scale = '1.4';
+        textSolution.style.opacity = '1';
+        closePopup();
+        setTimeout(returnScale, 190);
+    }
+},);
 generateBtn.addEventListener('click', () => {
     tensePrompt.style.opacity = '0'
     setTimeout(tenseCheck, 1500);
@@ -197,6 +155,17 @@ generateBtn.addEventListener('click', () => {
 generateBtn.addEventListener('click', debounce(e => {
     sayTense();
 }, 700));
+document.addEventListener("keydown", (e) => {
+    if (e.code === "Enter") {
+        tensePrompt.style.opacity = '0'
+        setTimeout(tenseCheck, 1500);
+        generateBtn.style.scale = '1.4';
+        closePopup();
+        moveContent();
+        generateSentence();
+        setTimeout(returnScale, 190);
+    }
+});
 function returnScale() {
     generateBtn.style.scale = '1';
     colorBlueBtn.style.scale = '1';
@@ -225,6 +194,16 @@ colorGreenBtn.addEventListener('click', debounce(e => {
     sayTense();
     tenseCheck();
 }, 700));
+document.addEventListener("keydown", (e) => {
+    if (e.code === "ArrowUp") {
+        colorGreenBtn.style.scale = '1.4'
+        tensePrompt.style.opacity = '0'
+        setTimeout(tenseCheck, 1500);
+        greenActivation();
+        generateSentence();
+        setTimeout(returnScale, 200);
+    }
+},);
 function blueActivation() {
     body.style.backgroundColor = 'rgb(60, 124, 241)';
     currentArray = 'Past';
@@ -246,6 +225,16 @@ colorBlueBtn.addEventListener('click', debounce(e => {
     sayTense();
     tenseCheck();
 }, 700));
+document.addEventListener("keydown", (e) => {
+    if (e.code === "ArrowLeft") {
+        tensePrompt.style.opacity = '0'
+        setTimeout(tenseCheck, 1500);
+        colorBlueBtn.style.scale = '1.4'
+        blueActivation();
+        generateSentence();
+        setTimeout(returnScale, 200)
+    }
+},);
 function removeShadows() {
     FSActivate.classList.remove('active__red');
     PSActivate.classList.remove('active__blue');
@@ -276,7 +265,16 @@ colorRedBtn.addEventListener('click', debounce(e => {
     sayTense();
     tenseCheck();
 }, 700));
-
+document.addEventListener("keydown", (e) => {
+    if (e.code === "ArrowRight") {
+        tensePrompt.style.opacity = '0'
+        setTimeout(tenseCheck, 1500);
+        colorRedBtn.style.scale = '1.4';
+        redActivation();
+        generateSentence();
+        setTimeout(returnScale, 200);
+    }
+},);
 function randomActivate() {
     body.style.backgroundColor = 'rgb(252, 56, 56)';
     currentArray = ' ';
@@ -284,22 +282,47 @@ function randomActivate() {
     randomActive.classList.add('active__random');
 }
 randomActive.addEventListener('click', randomActivate);
+document.addEventListener('keydown', (e) => {
+    if (e.code === 'KeyR') {
+        randomActivate();
+    }
+});
 questionsActive.addEventListener('click', () => {
     currentArray = 'questions';
     removeShadows();
     questionsActive.classList.add('active__white');
+});
+document.addEventListener('keydown', (e) => {
+    if (e.code === 'KeyQ') {
+        currentArray = 'questions';
+        removeShadows();
+        questionsActive.classList.add('active__white');
+    }
 });
 negativeActive.addEventListener('click', () => {
     currentArray = 'negatives';
     removeShadows();
     negativeActive.classList.add('active__white');
 });
+document.addEventListener('keydown', (e) => {
+    if (e.code === 'KeyN') {
+        currentArray = 'negatives';
+        removeShadows();
+        negativeActive.classList.add('active__white');
+    }
+});
 affirmativeActive.addEventListener('click', () => {
     currentArray = 'affirmatives';
     removeShadows();
     affirmativeActive.classList.add('active__white');
 });
-
+document.addEventListener('keydown', (e) => {
+    if (e.code === 'KeyA') {
+        currentArray = 'affirmatives';
+        removeShadows();
+        affirmativeActive.classList.add('active__white');
+    }
+});
 //=========================================  TEST  ==================================
 
 let currentSentence = '';
